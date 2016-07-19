@@ -80,6 +80,22 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as? MovieCell
+        
+        //
+        cell!.contentView.backgroundColor = UIColor.clearColor()
+
+        
+        let whiteRoundedView : UIView = UIView(frame: CGRectMake(10, 8, self.view.frame.size.width, 149))
+        
+        whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 0.8])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 2.0
+        whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
+        whiteRoundedView.layer.shadowOpacity = 0.2
+        cell!.contentView.addSubview(whiteRoundedView)
+        cell!.contentView.sendSubviewToBack(whiteRoundedView)
+        //
+        
         let movie = DATA[indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
